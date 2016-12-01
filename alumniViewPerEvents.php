@@ -254,14 +254,14 @@ $attendeesRow=mysqli_fetch_array($res);
   	if($attendeesRow['count'] == 0)
 {
   echo "
-<p style='text-align: center;'><a class='btn btn-primary' href='processAttendEvents.php?uid=".$_GET['uid']."'><font face='verdana'>Attend Event </a> </p>
+<p style='text-align: center;'><a class='btn btn-primary' href='processAttendEvents.php?uid=".$_GET['uid']."' onclick=\"javascript:window.open('processGoogleCalendar.php?uid=".$_GET['uid']."', '_blank','toolbar=no,width=250,height=250');\"<font face='verdana'>Attend Event </a> </p>
  
 	";
 }
   	else
 {
   echo "
-<p style='text-align: center;'><a class='btn btn-primary' href='processCancelAttendEvents.php?uid=".$_GET['uid']."'><font face='verdana'>Cancel Attendance </a> </p>
+<p style='text-align: center;'><a class='btn btn-primary' href='processCancelAttendEvents.php?uid=".$_GET['uid']."' ><font face='verdana'>Cancel Attendance </a> </p>
  
 	";
 }

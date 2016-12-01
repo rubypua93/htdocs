@@ -15,7 +15,7 @@ session_start();
 
     header("Location: alumniViewPerEvents.php?uid=$eventsID");
 	
-	
+	//header("Location: processGoogleCalendar.php?uid=$eventsID");
 
 
 ?>
