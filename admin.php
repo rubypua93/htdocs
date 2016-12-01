@@ -95,10 +95,22 @@ $adminRow=mysqli_fetch_array($res);
 <nav id="fh5co-menu-wrap" role="navigation">
             <ul class="sf-menu" id="fh5co-primary-menu">
             <li><a href="admin.php">Home</a></li>
-
+   <li><a href="admin.php">Manage Alumni</a>
+                <ul class="fh5co-sub-menu">
+                  <li><a href="directoryAdmin.php">Directory</a></li>
+                    <li><a target="_blank">Testimonial</a>
+                      <ul class="fh5co-sub-menu">
+                      <li><a href="testimonialListAdmin.php">Testimonial List</a></li>
+                      <li><a href="approveTestimonial.php" >Approve Testimonial</a></li>
+                      </ul>
+                  <li><a href="researchTitleListAdmin.php">FYP Research</a></li>
+                  <li><a href="index_excel.php">Generate Account</a></li>
+				  <li><a href="approvingAlumni.php">Approve Alumni</a></li>
+                </ul>
+              </li></li>
                  
                   <li>
-                    <a href="#" class="fh5co-sub-ddown">News & Event</a>
+                    <a href="admin.php">News & Event</a>
                       <ul class="fh5co-sub-menu">
                       <li><a target="_blank">News & Announcement</a>
                       <ul class="fh5co-sub-menu">
@@ -107,6 +119,7 @@ $adminRow=mysqli_fetch_array($res);
                       <li><a href="news.php">View News</a></li>
 
                       </ul>
+					  
                       </li>
                       <li><a target="_blank">Manage Events</a>
 					    <ul class="fh5co-sub-menu">
@@ -117,21 +130,8 @@ $adminRow=mysqli_fetch_array($res);
                     </ul>
                   </li>
                    
-                <li><a href="admin.php">Job Area</a>
-                <ul class="fh5co-sub-menu">
-                  <li><a href="joblist.php">View All Jobs</a></li>
-                  <li><a href="joblistalumni.php">View My Job List</a></li>
-                  <li><a href="createjob.php">Post Job Advertisement</a></li>
-                </ul>
-              </li>
-                <li><a href="admin.php">Manage Alumni</a>
-                <ul class="fh5co-sub-menu">
-                  <li><a href="admin.php">Directory</a></li>
-                  <li><a href="admin.php">Testimonial</a></li>
-                  <li><a href="admin.php">FYP Research</a></li>
-                  <li><a href="index_excel.php">Generate Account</a></li>
-                </ul>
-              </li>
+               
+             
                 <li><a href="admin.php">Report</a>
                 <ul class="fh5co-sub-menu">
                   <li><a href="survey.php">Manage Survey</a></li>
@@ -139,7 +139,13 @@ $adminRow=mysqli_fetch_array($res);
 
                 </ul>
               </li>
-            
+             <li><a href="admin.php">Job </a>
+                <ul class="fh5co-sub-menu">
+                  <li><a href="jobListAdmin.php">All Jobs</a></li>
+                  <li><a href="myJobListAdmin.php">My Jobs</a></li>
+                  <li><a href="createJobAdmin.php">Post Job</a></li>
+                </ul>
+              </li>
             </ul>
           </nav>
           </div>

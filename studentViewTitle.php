@@ -75,8 +75,8 @@ $res=mysqli_query($conn, "SELECT * FROM user WHERE userID=".$_SESSION['user']);
 $userRow=mysqli_fetch_array($res);
 ?>
 
-           <span> Welcome back,  <?php echo $userRow['userName']; ?></span>
-          <span> <a href="Logout.php?logout=1">Log Out</a></span>
+                   <span> Welcome back, admin - <?php echo $adminRow['userName']; ?></span>
+           <span><a href="Logoutadmin.php?logout=1"><font face="verdana">Log out</a></font></span>
         </div>
       </div>
       <!-- end:top -->
@@ -84,7 +84,7 @@ $userRow=mysqli_fetch_array($res);
         <div class="container">
           <div class="nav-header">
             <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-            <h1 id="fh5co-logo" ><a href="alumni.php">
+               <h1 id="fh5co-logo" ><a href="admin.php">
 			   <!--logo -->
 			   <?php
 
@@ -96,53 +96,60 @@ $adminRow=mysqli_fetch_array($res);
 			   ?>
 			    <!--logo -->
             <!-- START #fh5co-menu-wrap -->
- <nav id="fh5co-menu-wrap" role="navigation">
+<nav id="fh5co-menu-wrap" role="navigation">
             <ul class="sf-menu" id="fh5co-primary-menu">
-              <li><a href="admin.php">Home</a></li>
-			  
-			  <li>
-                    <a href="#" class="fh5co-sub-ddown">Alumni Area</a>
+            <li><a href="admin.php">Home</a></li>
+   <li><a href="admin.php">Manage Alumni</a>
+                <ul class="fh5co-sub-menu">
+                  <li><a href="directoryAdmin.php">Directory</a></li>
+                    <li><a target="_blank">Testimonial</a>
                       <ul class="fh5co-sub-menu">
-                      <li><a href="myAccount.php">My Account</a></li>
-					  <li><a href="myProfile.php">My Profile</a></li>
-					   <li><a href="alumniDirectory1.php">Alumni Directory</a></li>
-                  <li><a href="alumni.php">Friend Network</a></li>
-                    </ul>
-                  </li>
-
+                      <li><a href="testimonialListAdmin.php">Testimonial List</a></li>
+                      <li><a href="approveTestimonial.php" >Approve Testimonial</a></li>
+                      </ul>
+                  <li><a href="researchTitleListAdmin.php">FYP Research</a></li>
+                  <li><a href="index_excel.php">Generate Account</a></li>
+				  <li><a href="approvingAlumni.php">Approve Alumni</a></li>
+                </ul>
+              </li></li>
+                 
                   <li>
-                    <a href="#" class="fh5co-sub-ddown">News & Event</a>
+                    <a href="admin.php">News & Event</a>
                       <ul class="fh5co-sub-menu">
                       <li><a target="_blank">News & Announcement</a>
                       <ul class="fh5co-sub-menu">
-                      <li><a href="news.php" target="_blank">View News</a></li>
+					  <li><a href="logo.php">Change Logo</a></li>
+                      <li><a href="photoadmin.php">Upload Photo</a></li>
+                      <li><a href="news.php">View News</a></li>
+
                       </ul>
+					  
                       </li>
-					  <li><a href="alumni.php">Survey</a></li>
-                      <li><a href="#" target="_blank">Events</a></li>
+                      <li><a target="_blank">Manage Events</a>
+					    <ul class="fh5co-sub-menu">
+						 <li><a href="viewEvents.php">View Events</a></li>
+                      <li><a href="assignEM.php">Create Event Manager</a></li></li>
+
+                      </ul>
                     </ul>
                   </li>
                    
-                <li><a href="alumni.php">Job Area</a>
+               
+             
+                <li><a href="admin.php">Report</a>
                 <ul class="fh5co-sub-menu">
-                  <li><a href="alumni.php">View All Jobs</a></li>
-                  <li><a href="alumni.php">View My Job List</a></li>
-                  <li><a href="alumni.php">Post Job Advertisement</a></li>
-                </ul>
-              </li>
-              
-			  
-                <li><a href="alumni.php">More</a>
-                <ul class="fh5co-sub-menu">
-				   <li><a href="alumni.php">FYP Research</a>
-				   
-				   </li>
-				    
-				    <li><a href="createTestimonial.php">Testimonial</a></li>
+                  <li><a href="survey.php">Manage Survey</a></li>
+                  <li><a href="report.php">Analysis Report</a></li>
 
                 </ul>
               </li>
-            
+             <li><a href="admin.php">Job </a>
+                <ul class="fh5co-sub-menu">
+                  <li><a href="jobListAdmin.php">All Jobs</a></li>
+                  <li><a href="myJobListAdmin.php">My Jobs</a></li>
+                  <li><a href="createJobAdmin.php">Post Job</a></li>
+                </ul>
+              </li>
             </ul>
           </nav>
           </div>
@@ -150,7 +157,6 @@ $adminRow=mysqli_fetch_array($res);
       </header>
       
     </div>
-    
 
     <div class="fh5co-hero">
       <div class="fh5co-overlay" style="height:100%;z-index:0;"></div>
