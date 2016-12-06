@@ -476,14 +476,14 @@ if(isset($_POST['submit']))
 		
 
 	$from = new SendGrid\Email(null, "fsktmalumni@hotmail.com");
-	$to = new SendGrid\Email(null, "charissa930520@hotmail.com");
+	$to = new SendGrid\Email(null, $userRow['email']);
 
 	//$userRow['email']
 	$subject = "Friend Request";
 	$content = new SendGrid\Content("text/plain", "Dear alumni, you have a new friend request." );
 	$mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-	$apiKey = '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';
+	$apiKey = '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';
 	$sg = new \SendGrid($apiKey);
 
 	$response = $sg->client->mail()->send()->post($mail);

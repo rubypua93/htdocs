@@ -36,7 +36,7 @@ $subject = "Friend Request";
 $content = new SendGrid\Content("text/plain", "Dear alumni, you have a friend request." );
 $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-$apiKey = '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';
+$apiKey = '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';
 $sg = new \SendGrid($apiKey);
 
 $response = $sg->client->mail()->send()->post($mail);

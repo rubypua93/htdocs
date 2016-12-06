@@ -27,7 +27,7 @@ $subject = "Application Approved";
 $content = new SendGrid\Content("text/plain", "Dear alumni, your testimonial have been approved. Please login to Alumni website by clicking this link http://localhost/New%20Alumni%20Webpage/signIn.php");
 $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-$apiKey = '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';
+$apiKey = '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';
 $sg = new \SendGrid($apiKey);
 
 $response = $sg->client->mail()->send()->post($mail);
@@ -71,7 +71,7 @@ $subject = "Application Rejected";
 $content = new SendGrid\Content("text/plain", "Dear alumni, your testmonial have been rejected.");
 $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-$apiKey = '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';
+$apiKey = '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';
 $sg = new \SendGrid($apiKey);
 
 $response = $sg->client->mail()->send()->post($mail);

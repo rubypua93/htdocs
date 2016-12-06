@@ -211,7 +211,7 @@ $adminRow=mysqli_fetch_array($res);
 
 
 <div style = "background: rgba(255, 255, 255, 0.9);">
-  <h2 style = "color: #7c795d; font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px; margin: 0;text-align: center;"> Research Title List</h2>
+  <h2 style = "color: #7c795d; font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px; margin: 0;text-align: center;"> Research Collaboration Title List</h2>
   <div align="center">
   
   <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">

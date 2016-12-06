@@ -2,7 +2,7 @@
 if ($_POST['action'] == 'Approve') {
 
 $userID = $_POST['userID'];
-echo $_POST['userID'];
+//echo $_POST['userID'];
 	require_once("DBConnect.php");
 	require("/lib/sendgrid-php/sendgrid-php.php");
 	// echo "<script type='text/javascript'>alert('Are you sure you want to confirm this?');window.history.back();</script>";
@@ -19,6 +19,7 @@ foreach( $userID as $key => $n ) {
 			
 $res=mysqli_query($conn, "SELECT * FROM user WHERE userID='".$userID[$key]."'");
 $userRow=mysqli_fetch_array($res);
+echo $userRow['email'];
 //$content = "Dear " +$userRow['fullName']+", <br/> Your application have been approved. You can now login to the FCSIT UM Alumni website by clicking this link http://localhost/New%20Alumni%20Webpage/signIn.php";
 			
   //  mysqli_query($conn, $q) or die(mysql_error());
@@ -32,7 +33,7 @@ $subject = "Application Approved";
 $content = new SendGrid\Content("text/plain", "Dear alumni, your application have been approved. You can now login to the FCSIT UM Alumni website by clicking this link http://localhost/New%20Alumni%20Webpage/signIn.php");
 $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-$apiKey = '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';
+$apiKey = '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';
 $sg = new \SendGrid($apiKey);
 
 $response = $sg->client->mail()->send()->post($mail);
@@ -72,7 +73,7 @@ $subject = "Application Rejected";
 $content = new SendGrid\Content("text/plain", "Dear alumni, your application to UM FSKTM alumni system have been rejected.");
 $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-$apiKey = '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';
+$apiKey = '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';
 $sg = new \SendGrid($apiKey);
 
 $response = $sg->client->mail()->send()->post($mail);
@@ -86,7 +87,7 @@ echo $response->body();
 
 	
   
-    header("Location: approvingAlumni.php");
+    //header("Location: approvingAlumni.php");
 
 
 ?>
