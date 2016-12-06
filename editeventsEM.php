@@ -149,39 +149,40 @@ $eventsRow=mysqli_fetch_array($res);
   <form action="process_editeventsEM.php" method="post" enctype="multipart/form-data" onSubmit="alert('Successful edited!');">
 
  
- <p><label> <font color="purple">Title: </font></label><input type="text"  size="70" name="title" value="<?php echo $eventsRow['title']; ?>" required/></p>
-         <p><label><font color="purple"><b>Organizer: </b></font> </label> 
+ <p><label> <font color="purple">*Title: </font></label><input type="text"  size="70" name="title" value="<?php echo $eventsRow['title']; ?>" required/></p>
+         <p><label><font color="purple"><b>*Organizer: </b></font> </label> 
            <input type="text" size="70" name="organizer" value="<?php echo $eventsRow['organizer']; ?>" required/></p>
               
        
                 
                
                <p>
-                             <p><label><font color="purple"> Speaker: </font></label><input type="text" size="70" name="speaker" value="<?php echo $eventsRow['speaker']; ?>" required/></p>
+                             <p><label><font color="purple"> *Speaker: </font></label><input type="text" size="70" name="speaker" value="<?php echo $eventsRow['speaker']; ?>" required/></p>
                            </p>
                
-                <p><label><font color="purple"> Start Date: </font></label><input type="date" size="70" id="startDate" name="startdate" value="<?php echo $eventsRow['start_date']; ?>" required/></p>
+                <p><label><font color="purple"> *Start Date: </font></label><input type="text" size="70" id="startDate" name="startdate" value="<?php echo $eventsRow['start_date']; ?>" required/></p>
               
               
               
                
-             <p><label><font color="purple"> End Date: </font></label><input type="date" size="70" id="endDate" name="enddate" value="<?php echo $eventsRow['end_date']; ?>" required/></p>
-			   <p><label><font color="purple"> Time: </font></label><input type="text" size="70" name="time" value="<?php echo $eventsRow['time']; ?>" required/></p>
-                 <p><label><font color="purple"> Location: </font></label><input type="text" size="70" name="location" value="<?php echo $eventsRow['location']; ?>" required/></p>
+             <p><label><font color="purple"> *End Date: </font></label><input type="text" size="70" id="endDate" name="enddate" value="<?php echo $eventsRow['end_date']; ?>" required/></p>
+			   <p><label><font color="purple">*Start Time: </font></label><input type="time" size="70" name="start_time" value="<?php echo $eventsRow['start_time']; ?>" required/></p>
+			   			   <p><label><font color="purple">*End Time: </font></label><input type="time" size="70" name="end_time" value="<?php echo $eventsRow['end_time']; ?>" required/></p>
+                 <p><label><font color="purple"> *Location: </font></label><input type="text" size="70" name="location" value="<?php echo $eventsRow['location']; ?>" required/></p>
                            
-						   <p><label><font color="purple">Further Info:</font> </label><textarea rows="3" cols="70" name="info" required/> <?php echo $eventsRow['further_info']; ?></textarea>
+						   <p><label><font color="purple">Further Info:</font> </label><textarea rows="3" cols="70" name="info" > <?php echo $eventsRow['further_info']; ?></textarea>
 						   
               
               
            
                
-                 <p><label><font color="purple"> Contact Name: </font></label><input type="text" size="70" name="name" value="<?php echo $eventsRow['contact_name']; ?>" required/></p>
-             <p><label><font color="purple"> Contact Phone Number: </font></label><input type="text" size="70" name="phonenumber" value="<?php echo $eventsRow['contact_phone']; ?>" required/></p>
+                 <p><label><font color="purple"> *Contact Name: </font></label><input type="text" size="70" name="name" value="<?php echo $eventsRow['contact_name']; ?>" required/></p>
+             <p><label><font color="purple"> *Contact Phone Number: </font></label><input type="text" size="70" name="phonenumber" value="<?php echo $eventsRow['contact_phone']; ?>" required/></p>
               
       
                
-                 <p><label><font color="purple"> Email Address: </font></label><input type="text" size="70" name="email" value="<?php echo $eventsRow['contact_email']; ?>" required/></p>
-                <p><label><font color="purple"> Website: </font></label><input type="text" size="70" name="website" value="<?php echo $eventsRow['contact_website']; ?>" required/></p>
+                 <p><label><font color="purple"> *Email Address: </font></label><input type="text" size="70" name="email" value="<?php echo $eventsRow['contact_email']; ?>" required/></p>
+                <p><label><font color="purple"> *Website: </font></label><input type="text" size="70" name="website" value="<?php echo $eventsRow['contact_website']; ?>" required/></p>
     
     <p><label><font color="purple"> Attachment: </font></label><input type="file" name="file" value="<?php echo $eventsRow['file']; ?>" >
 <?php

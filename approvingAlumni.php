@@ -194,7 +194,7 @@ $adminRow=mysqli_fetch_array($res);
   <b>Major</b>
   </td>
       <td>
-  <b>Graduate Year</b>
+  <b>Intake Year</b>
   </td>
    <td>
   <b>Evidence</b>
@@ -240,12 +240,11 @@ $number = $number + 1;
 }
 
 echo "</table>";
-echo $_POST['userID'];
 echo "<br/>";
 echo "<br/>";
 
-echo " <input class='btn btn-primary' name='action'  type='submit' value='Approve' onclick= 'return confirm('Are you sure want to confirm this?')' /> <font face='verdana'> ";
-echo " <input class='btn btn-primary'  name='action' type='submit' value='Reject' onclick= 'return confirm('Are you sure want to reject this?')' /> <font face='verdana'> ";
+echo " <input class='btn btn-primary' name='action'  type='submit' value='Approve' onclick= 'return confirm(\"Are you sure want to confirm this?\")' /> <font face='verdana'> ";
+echo " <input class='btn btn-primary'  name='action' type='submit' value='Reject' onclick= 'return confirm(\"Are you sure want to reject this?\")' /> <font face='verdana'> ";
 echo "<br/>";
 echo "<br/>";
 }

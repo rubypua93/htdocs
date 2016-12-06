@@ -66,67 +66,87 @@ include_once 'DBConnect.php';
 
 if(!isset($_SESSION['user']))
 {
- header("Location: signIn.php");
+ header("Location: index.php");
 }
 $res=mysqli_query($conn, "SELECT * FROM user WHERE userID=".$_SESSION['user']);
 $userRow=mysqli_fetch_array($res);
 ?>
 
-          <span> Welcome back,  - <?php echo $userRow['userName']; ?></span>
+         <span> Welcome back,   <?php echo $userRow['userName']; ?></span>
           <span> <a href="Logout.php?logout=1">Log Out</a></span>
         </div>
       </div>
       <!-- end:top -->
       <header id="fh5co-header-section">
-        <div class="container">
+        <div class="container"> 	
           <div class="nav-header">
             <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-            <h1 id="fh5co-logo" ><a href="index.html" style="color:#800080">FSKTM Alumni</a></h1>
+			 <!--logo -->
+			   <?php
+
+include_once 'DBConnect.php';
+
+$res=mysqli_query($conn, "SELECT fileName FROM logo where name = 'logo' limit 1");
+$adminRow=mysqli_fetch_array($res);
+			  echo  "<img src='logo/".$adminRow['fileName']."' alt='fsktm' style='width:90px;height:95px;'></a></h1>";
+			   ?>
+			    <!--logo -->
+           
             <!-- START #fh5co-menu-wrap -->
  <nav id="fh5co-menu-wrap" role="navigation">
             <ul class="sf-menu" id="fh5co-primary-menu">
-              <li><a href="admin.php">Home</a></li>
+              <li><a href="alumni.php">Home</a></li>
 			  
 			  <li>
                     <a href="#" class="fh5co-sub-ddown">Alumni Area</a>
                       <ul class="fh5co-sub-menu">
                       <li><a href="myAccount.php">My Account</a></li>
 					  <li><a href="myProfile.php">My Profile</a></li>
+					   <li><a href="myWall.php">My Wall</a></li>
 					   <li><a href="alumniDirectory1.php">Alumni Directory</a></li>
-                  <li><a href="alumni.php">Friend Network</a></li>
+                  <li><a target="_blank">Friend Network</a>
+                      <ul class="fh5co-sub-menu">
+                      <li><a href="friendList.php">Friend List</a></li>
+                      <li><a href="approveFriend.php" >Friend Request</a></li>
+					   <li><a href="cancelFriendRequest.php" >Cancel Friend Request</a></li>
+                      </ul>
+					  <li><a target="_blank">Testimonial</a>
+                      <ul class="fh5co-sub-menu">
+                      <li><a href="testimonialList.php">Testimonial List</a></li>
+                      <li><a href="myTestimonialList.php" >My Testimonial</a></li>
+					   <li><a href="createTestimonial1.php">Create Testimonial</a></li>
+                      </ul>
+					    <li><a href="studentViewTitle.php">Answer Survey</a></li>
                     </ul>
                   </li>
 
                   <li>
                     <a href="#" class="fh5co-sub-ddown">News & Event</a>
                       <ul class="fh5co-sub-menu">
-                      <li><a target="_blank">News & Announcement</a>
-                      <ul class="fh5co-sub-menu">
-                      <li><a href="news.php" target="_blank">View News</a></li>
-                      </ul>
+                      <li><a href="alumniViewNew.php">News & Announcement</a>
                       </li>
-					  <li><a href="alumni.php">Survey</a></li>
-                      <li><a href="#" target="_blank">Events</a></li>
+                      <li><a href="alumniViewEvent.php" target="_blank">View Events</a></li>
                     </ul>
                   </li>
                    
-                <li><a href="alumni.php">Job Area</a>
+                <li> <a href="#" class="fh5co-sub-ddown">Job Area</a>
                 <ul class="fh5co-sub-menu">
-                  <li><a href="alumni.php">View All Jobs</a></li>
-                  <li><a href="alumni.php">View My Job List</a></li>
-                  <li><a href="alumni.php">Post Job Advertisement</a></li>
+                  <li><a href="jobList.php">View All Jobs</a></li>
+                  <li><a href="myJobList.php">View My Job</a></li>
+                  <li><a href="createJob.php">Post Job</a></li>
                 </ul>
               </li>
               
 			  
-                <li><a href="alumni.php">More</a>
+                <li><a target="_blank">Research Collaboration</a>
                 <ul class="fh5co-sub-menu">
-				   <li><a href="alumni.php">FYP Research</a>
+				   <li><a href="researchTitleList.php">Title List</a>
+				   <li><a href="researchMyTitleList.php">My Title List</a>
+				   <li><a href="researchCreate.php">Propose Title</a>
 				   
 				   </li>
 				    
-				    <li><a href="createTestimonial.php">Testimonial</a></li>
-
+				  
                 </ul>
               </li>
             
@@ -189,7 +209,7 @@ function carousel() {
         <div class="row">
           <div class="col-lg-3 col-sm-12 animate-box">
             <h3 class="heading-section">Latest News And Announcements</h3>
-            <p><a href="news.php">View All News</a></p>
+            <p><a href="alumniViewNew.php">View All News</a></p>
           </div>
           <div class="col-lg-9 col-sm-12">
             <div class="row">
@@ -220,7 +240,7 @@ $newRow=mysqli_fetch_array($res);
 
 if(!empty($newRow)){
       echo"          <div class='fh5co-blog animate-box' style='background-image: url(picture/".$newRow['picture'].");'>
-                  <a class='image-popup' href='viewNews.php?uid=".$newRow['newsID']."'>
+                  <a class='image-popup' href='alumniViewPerNews.php?uid=".$newRow['newsID']."'>
                     <div class='prod-title'>
                       <span>".$newRow['create_date']."</span>
                   <h3>".$newRow['title']."</h3>
@@ -231,7 +251,7 @@ if(!empty($newRow)){
 }
     else{
 echo"          <div class='fh5co-blog animate-box' style='background-image: url(picture/".$newRow['picture'].");'>
-                  <a class='image-popup' href='viewNews.php?uid=".$newRow['newsID']."'>
+                  <a class='image-popup' href='alumniViewPerNews.php?uid=".$newRow['newsID']."'>
                     <div class='prod-title'>
                       <span></span>
                   <h3></h3>
@@ -269,8 +289,8 @@ $newRow=mysqli_fetch_array($res);
 <?php
 
 if(!empty($newRow)){
-      echo"          <div class='fh5co-blog animate-box' style='background-image: url(../picture/".$newRow['picture'].");'>
-                  <a class='image-popup' href='viewNews.php?uid=".$newRow['newsID']."'>
+      echo"          <div class='fh5co-blog animate-box' style='background-image: url(picture/".$newRow['picture'].");'>
+                  <a class='image-popup' href='alumniViewPerNews.php?uid=".$newRow['newsID']."'>
                     <div class='prod-title'>
                       <span>".$newRow['create_date']."</span>
                   <h3>".$newRow['title']."</h3>
@@ -281,8 +301,8 @@ if(!empty($newRow)){
 
     }
         else{
-echo"          <div class='fh5co-blog animate-box' style='background-image: url(../picture/".$newRow['picture'].");'>
-                  <a class='image-popup' href='viewNews.php?uid=".$newRow['newsID']."'>
+echo"          <div class='fh5co-blog animate-box' style='background-image: url(picture/".$newRow['picture'].");'>
+                  <a class='image-popup' href='alumniViewPerNews.php?uid=".$newRow['newsID']."'>
                     <div class='prod-title'>
                       <span></span>
                   <h3></h3>
@@ -318,8 +338,8 @@ $newRow=mysqli_fetch_array($res);
 <?php
 
 if(!empty($newRow)){
-      echo"          <div class='fh5co-blog animate-box' style='background-image: url(../picture/".$newRow['picture'].");'>
-                  <a class='image-popup' href='viewNews.php?uid=".$newRow['newsID']."'>
+      echo"          <div class='fh5co-blog animate-box' style='background-image: url(picture/".$newRow['picture'].");'>
+                  <a class='image-popup' href='alumniViewPerNews.php?uid=".$newRow['newsID']."'>
                     <div class='prod-title'>
                       <span>".$newRow['create_date']."</span>
                   <h3>".$newRow['title']."</h3>
@@ -330,8 +350,8 @@ if(!empty($newRow)){
 
     }
     else{
-echo"          <div class='fh5co-blog animate-box' style='background-image: url(../picture/".$newRow['picture'].");'>
-                  <a class='image-popup' href='viewNews.php?uid=".$newRow['newsID']."'>
+echo"          <div class='fh5co-blog animate-box' style='background-image: url(picture/".$newRow['picture'].");'>
+                  <a class='image-popup' href='alumniViewPerNews.php?uid=".$newRow['newsID']."'>
                     <div class='prod-title'>
                       <span></span>
                   <h3></h3>
@@ -356,7 +376,7 @@ echo"          <div class='fh5co-blog animate-box' style='background-image: url(
         <div class="row">
           <div class="col-lg-3 col-sm-12 animate-box">
             <h3 class="heading-section">Latest Events</h3>
- <p><a href ="#">View All Events</a></p>
+ <p><a href ="alumniViewEvent.php">View All Events</a></p>
           </div>
           <div class="col-lg-9 col-sm-12">
             <div class="row">
@@ -372,7 +392,7 @@ FROM
       SELECT @row := @row + 1 AS row, pi.*
   FROM events pi, (SELECT @row:=0) x order by pi.create_date desc
    ) c
-where c.row = 3
+where c.row = 1
 ;");
 
 
@@ -383,9 +403,10 @@ $newRow=mysqli_fetch_array($res);
 
 <?php
       echo"          <div class='fh5co-blog animate-box' style='background-image: url(images/blog-1.jpg);'>
-                  <a class='image-popup' href='#'>
+                  <a class='image-popup' href='alumniViewPerEvents.php?uid=".$newRow['eventsID']."'>
                     <div class='prod-title'>
-                      <span>Date Start : ".$newRow['start_date']." End : ".$newRow['end_date']."</span>
+                      <span>Date Start : ".$newRow['start_date']." <br>Date End : ".$newRow['end_date']."</span>
+					  <br>
                   <h3>".$newRow['title']."</h3>
                       <p>".$newRow['rpadString']."</p>
                     </div>
@@ -416,9 +437,9 @@ $newRow=mysqli_fetch_array($res);
 
 <?php
       echo"          <div class='fh5co-blog animate-box' style='background-image: url(images/blog-2.jpg);'>
-                  <a class='image-popup' href='#'>
+                  <a class='image-popup' href='alumniViewPerEvents.php?uid=".$newRow['eventsID']."'>
                     <div class='prod-title'>
-                      <span>Date Start : ".$newRow['start_date']." End : ".$newRow['end_date']."</span>
+                      <span>Date Start : ".$newRow['start_date']." <br>Date End : ".$newRow['end_date']."</span>
                   <h3>".$newRow['title']."</h3>
                       <p>".$newRow['rpadString']."</p>
                     </div>
@@ -449,9 +470,9 @@ $newRow=mysqli_fetch_array($res);
 
 <?php
       echo"          <div class='fh5co-blog animate-box' style='background-image: url(images/blog-3.jpg);'>
-                  <a class='image-popup' href='#'>
+                  <a class='image-popup' href='alumniViewPerEvents.php?uid=".$newRow['eventsID']."'>
                     <div class='prod-title'>
-                      <span>Date Start : ".$newRow['start_date']." End : ".$newRow['end_date']."</span>
+                      <span>Date Start : ".$newRow['start_date']." <br>Date End : ".$newRow['end_date']."</span>
                   <h3>".$newRow['title']."</h3>
                       <p>".$newRow['rpadString']."</p>
                     </div>
@@ -468,7 +489,7 @@ $newRow=mysqli_fetch_array($res);
 
     </div>
 
-   <div id="fh5co-blog-section">
+    <div id="fh5co-blog-section">
             <div class="container">
         <div class="row">
           <div class="col-md-6 col-sm-6">

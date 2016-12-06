@@ -7,7 +7,7 @@ session_start();
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>UM Alumni</title>
+  <title>FSKTM Alumni</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
   <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -91,7 +91,7 @@ $adminRow=mysqli_fetch_array($res);
               <li>
                 <a href="loginadmin.php">Login</a>
               </li>
-              <li><a href="register1.php">Sign Up</a></li>
+              <li><a href="beforeRegister.php">Sign Up</a></li>
               <li><a href="homepage.php">Home</a></li>
             </ul>
           </nav>
@@ -111,9 +111,9 @@ $adminRow=mysqli_fetch_array($res);
 
 <div style = "background: rgba(255, 255, 255, 0.9);">
   <h2 style = "color: #7c795d; font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px; margin: 0;text-align: center;">View All News and Announcements </h2>
-  <table style = "width:100%" border = "1">
+  <table style = "width:80%" border = "1" align = "center">
   <col width = "10%">
-  <col width = "35%">
+  <col width = "45%">
   <col width = "25%">
   
   <tr>

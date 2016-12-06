@@ -218,12 +218,12 @@ $adminRow=mysqli_fetch_array($res);
 
 <br/>
                       
- <table style = "width:80%" border = "1">
+ <table style = "width:90%" border = "1" align = "center">
   <col width = "10%">
-  <col width = "30%">
+  <col width = "40%">
   <col width = "25%">
   <col width = "15%">
- 
+
   
   <tr>
   <td>
@@ -248,7 +248,7 @@ mysql_connect("localhost", "root", "") or
     die("Could not connect: " . mysql_error());
 mysql_select_db("alumnidatabase");
 
-$result = mysqli_query($conn,"SELECT researchID, title,author,date FROM researchcollaboration");
+$result = mysqli_query($conn,"SELECT researchID, title,author,date FROM researchcollaboration order by date desc");
 $number = 1;
 
 
@@ -282,8 +282,6 @@ echo "<br/>";
 echo "<br/>";
 
 
-echo "<br/>";
-echo "<br/>";
 }
 else {
 	//echo "</table>";
@@ -306,7 +304,8 @@ echo "<br/>";
              
                 
                  </form>
-
+ <p style="text-align: center;"><a class="btn btn-primary" href="researchCreateAdmin.php"><font face="verdana"><b>Post a research title</b></a> 
+  <p style="text-align: center;"><a class="btn btn-primary" href="researchMyTitleListAdmin.php"><font face="verdana"><b>View my research title List</b></a> 
  <p style="text-align: center;"><a class="btn btn-primary" href="admin.php"><font face="verdana"><b>Back to Home</b></a> </p>
  </br>
  </br>

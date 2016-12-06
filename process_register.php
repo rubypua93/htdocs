@@ -1,81 +1,91 @@
 <?php
 
-//session_start();
-//if(isset($_SESSION['user'])!="")
-//{
- //header("Location: home.php");
-//d}
+include_once 'DBConnect.php';
 
-    if(empty($_POST)) { exit; }
-    
-    $errors = array();
-	
-	//Email validation
-	//if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-	//$errors[]="Email is a not valid";
-//}
-    
+  
     //Password validation 
     
-    if($_POST["password"] != $_POST["checkpassword"])
-        $errors[] = "Password is not the same.";
-    if(strlen($_POST["password"]) < 5)
-        $errors[] = "Password must be more than 5 characters.";
+   
+  
+	$check="SELECT * FROM user WHERE email = '".$_POST["email"]."'";
+	$rs = mysqli_query($conn,$check);
+	$data = mysqli_fetch_array($rs, MYSQLI_NUM);
 	
-	//Programme validation
-	if(!isset($_POST['programme'])) 
-{
-	$errorMessage .= "<li>You did not select your programme!</li>";
-}
-   //Major Validation
-   if(!isset($_POST['major'])) 
-{
-	$errorMessage .= "<li>You did not select your major!</li>";
+	 if($data[0] > 1) {
+     echo "<script type='text/javascript'>alert('User already exists.'); window.history.back();</script>";
+	}	
 	
-}
-    
-    // Profile photo validation 
-     if(file_exists($_FILES["profilephoto"]['tmp_name']) || is_uploaded_file($_FILES["profilephoto"]['tmp_name']))
-	 {	 
-   if($_FILES["profilephoto"]["error"] != 0)
-        $errors[] = "Error uploading file. Please try again.";
-    $ext = strtolower(substr($_FILES["profilephoto"]["name"], -4));
-    if($ext != ".jpg")
-      $errors[] = "Upload jpg only";
-  }
-        
-    //Show errors
-    
-    if( ! empty($errors))
-    {
-        echo "<b>Error(s):</b><hr />";
-        foreach($errors as $e) {
-            echo "<li>".$e."</li>";
-        }
-        exit;
-    }
-	
-	//Photo
-	if(empty($_FILES["profilephoto"]["name"])){
-		$fnm = null;
-	}
 	else{
 		
-    $fnm = time() . "_" . $_FILES["profilephoto"]["name"];
-		move_uploaded_file($_FILES["profilephoto"]["tmp_name"], __DIR__."/uploads/" . $fnm);
-	//move_uploaded_file($_FILES["profilephoto"]["tmp_name"],"/uploads/".$fnm);
-    //move_uploaded_file($_FILES["profilephoto"]["tmp_name"], "uploads/".$fnm);
+		 if($_POST["password"] != $_POST["checkpassword"]){
+		echo "<script type='text/javascript'>alert('Password not the same.');window.history.back();</script>";
+	}
+	
+    else if(strlen($_POST["password"]) < 5){
+       
+		echo "<script type='text/javascript'>alert('Password must be more than 5 characters.');window.history.back();</script>";
+	}
+	
+    // Profile photo validation 
+   // else if(file_exists($_FILES["profilephoto"]['tmp_name']) || is_uploaded_file($_FILES["profilephoto"]['tmp_name']))
+	// {	 
+	//echo"456";
+	//	if($_FILES["profilephoto"]["error"] != 0){
+			
+	//		echo "<script type='text/javascript'>alert('Error uploading file. Please try again.');window.history.back();</script>";
+	//	}
+	//	
+		//$ext = strtolower(substr($_FILES["profilephoto"]["name"], -4));
+	//	if($ext != ".jpg"){
+	//		$errors[] = "Upload jpg only";
+	//	}
+ // }
+  
+  else{
+	  echo"123";
+		echo $_POST["pictureURL"];
+		$q = "insert into user(password, email, userName, programme, major, graduateYear, matricNum, phoneNum, address, fullName, occupation,status,profilepictureLink) values('".$_POST["password"]."','".$_POST["email"]."','".$_POST["username"]."','".$_POST["programme"]."', '".$_POST["major"]."', '".$_POST["graduateyear"]."', '".$_POST["matricnumber"]."','".$_POST["phonenumber"]."', '".$_POST["address"]."', '".$_POST["fullname"]."', '".$_POST["occupation"]."','1','".$_POST["pictureURL"]."')";
+		mysqli_query($conn, $q) or die(mysql_error());
+	
+		session_start();
+		$res =  mysqli_insert_id ($conn);
+	
+	
+		//Photo
+		if(empty($_FILES["profilephoto"]["name"])){
+			$fnm = null;
+		}
+		else{
+		
+			$fnm = $res;
+			move_uploaded_file($_FILES["profilephoto"]["tmp_name"], __DIR__."/uploads/" . $fnm);
 	
     }
-    require_once("DBConnect.php");
-    $q = "insert into user(password, email, userName, programme, major, graduateYear, phoneNum, address, fullName, profilepicture) values('".$_POST["password"]."','".$_POST["email"]."','".$_POST["username"]."','".$_POST["programme"]."', '".$_POST["major"]."', '".$_POST["graduateyear"]."', '".$_POST["phonenumber"]."', '".$_POST["address"]."', '".$_POST["fullname"]."', '".$fnm."')";
-    mysqli_query($conn, $q) or die(mysql_error());
 	
+		$pic = "UPDATE user SET profilepicture = '".$fnm."'
+               WHERE userID =" .$res;
+		mysqli_query($conn, $pic) or die(mysql_error());
+	 
+		//File
+		$evidence = $res;
+		move_uploaded_file($_FILES["evidence"]["tmp_name"], __DIR__."/evidence/" .  $evidence);
+		
+		$evidence1 = "UPDATE user SET evidence = '".$evidence."'
+               WHERE userID =" .$res;
+		mysqli_query($conn, $evidence1) or die(mysql_error());
+	 
+	 
 	
-    session_start();
-    $_SESSION['user'] =  mysqli_insert_id ($conn);
-    header("Location: alumni.php");
+	 echo "<script type='text/javascript'>alert('Registration Successful! Please wait for approval of admin to verify your application.')</script>";
+	 echo "<script>setTimeout(\"location.href = 'index.php';\");</script>";
+   // header("Location: index.php");
+  }
+	}
+	
 
+	
+	
 ?>
+
 
 

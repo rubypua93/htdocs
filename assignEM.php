@@ -189,21 +189,21 @@ $adminRow=mysqli_fetch_array($res);
 <br>
 
  <p>
-               <label><font color="purple"><b>Name:   </b></font></label>             
+               <label><font color="purple"><b>*Name:   </b></font></label>             
                             <input type="text" size="70" name="name" required/>
                             </p>
                        
 							
-                            <p><label><font color="purple"><b>Email: </b></font> </label> 
+                            <p><label><font color="purple"><b>*Email: </b></font> </label> 
                             <input type="email" size="70" name="email" required/></p>
 							
                             
                             <p>
-                            <label><font color="purple"><b>Password: </b></font> </label> 
+                            <label><font color="purple"><b>*Password: </b></font> </label> 
                             <input type="password" size="70" name="password" required/>
                             </p>
                             <p>
-                            <label><font color="purple"><b>Confirm Password: </b></font> </label> 
+                            <label><font color="purple"><b>*Confirm Password: </b></font> </label> 
                             <input type="password" size="70" name="checkpassword" required/>
                             </p>
                             

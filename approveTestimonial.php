@@ -179,7 +179,7 @@ $adminRow=mysqli_fetch_array($res);
   <col width = "30%">
   <col width = "25%">
   <col width = "15%">
-  
+  <col width = "20%">
   
  <tr>
   <td>

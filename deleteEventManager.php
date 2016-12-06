@@ -169,10 +169,11 @@ $adminRow=mysqli_fetch_array($res);
   <h2 style = "color: #7c795d; font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px; margin: 0;text-align: center;">Delete event managers</h2>
   <form action="process_deleteEM.php" method="post" enctype="multipart/form-data">
 
-  <table style = "width:100%" border = "1">
-  <col width = "5%">
-  <col width = "40%">
+  <table style = "width:80%" border = "1" align="center">
+  <col width = "10%">
   <col width = "25%">
+  <col width = "25%">
+    <col width = "20%">
   <br>
    <tr>
   <td>

@@ -7,7 +7,7 @@ session_start();
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>FSKTM Alumni</title>
+  <title>UM Alumni</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
   <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -75,7 +75,7 @@ $res=mysqli_query($conn, "SELECT * FROM admin WHERE adminID=".$_SESSION['admin']
 $adminRow=mysqli_fetch_array($res);
 ?>
 
-             <span> Welcome back, admin - <?php echo $adminRow['userName']; ?></span>
+          <span> Welcome back, admin - <?php echo $adminRow['userName']; ?></span>
            <span><a href="Logoutadmin.php?logout=1"><font face="verdana">Log out</a></font></span>
         </div>
       </div>
@@ -156,8 +156,9 @@ $adminRow=mysqli_fetch_array($res);
         </div>
       </header>
       
+      
     </div>
-    
+
      <div class="fh5co-hero" style="height:100%;">
       <div class="fh5co-overlay" style="height:100%;z-index:0;"></div>
       <div style="background-image: url(images/background.jpg); background-size: cover;">
@@ -174,10 +175,10 @@ $adminRow=mysqli_fetch_array($res);
                       
  <table style = "width:80%" border = "1">
   <col width = "10%">
-  <col width = "40%">
+  <col width = "30%">
+  <col width = "25%">
+  <col width = "15%">
   <col width = "20%">
-  <col width = "10%">
- 
   
   <tr>
   <td>
@@ -202,7 +203,7 @@ mysql_connect("localhost", "root", "") or
     die("Could not connect: " . mysql_error());
 mysql_select_db("alumnidatabase");
 
-$result = mysqli_query($conn,"SELECT testimonial_ID, title,author,date FROM testimonial WHERE status = '0' ");
+$result = mysqli_query($conn,"SELECT testimonial_ID, title,author,date FROM testimonial WHERE status = '0' order by date desc  ");
 $number = 1;
 
 

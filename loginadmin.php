@@ -119,7 +119,7 @@ $adminRow=mysqli_fetch_array($res);
               <li class="active">
                 <a href="loginadmin.php">Login</a>
               </li>
-              <li><a href="register1.php">Sign Up</a></li>
+              <li><a href="beforeRegister.php">Sign Up</a></li>
               <li><a href="homepage.php">Home</a></li>
             </ul>
           </nav>

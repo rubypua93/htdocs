@@ -3,11 +3,82 @@ session_start();
 ?>
 <!DOCTYPE html>
 
+<script type = "text/javascript">
+            function CheckSearch(val) {
+                //hide all elements
+                var name = document.getElementById("jobtitle");
+                name.style.display = "none";
+                name.value = "";
+                
+                var programme = document.getElementById("industry");
+                programme.style.display = "none";
+                programme.value = "";
+                
+                var major = document.getElementById("state");
+                major.style.display = "none";
+                major.value = "";
+				
+                
+                //depends on index selected, show the desired one
+                if (val.selectedIndex === 0){
+                     document.getElementById("jobtitle").style.display = "block";
+                }else if(val.selectedIndex === 1){
+                     document.getElementById("industry").style.display = "block";
+                }else{                    
+                     document.getElementById("state").style.display = "block";
+                }
+              
+            }
+         
+        </script> 
+ 
+ <style type="text/css">
+   label {
+	   float:left;
+width:25%;
+display:inline-block;	
+}
+
+#search{
+ width:580px;  
+font-family: Arial; font-size: 15pt; 
+}
+
+   #search option{
+  width:580px;   
+  font-family: Arial; font-size: 15pt; 
+}
+
+#industry{
+ width:580px;   
+ font-family: Arial; font-size: 15pt; 
+}
+
+   #industry option{
+  width:580px;   
+  font-family: Arial; font-size: 15pt; 
+}
+
+#state{
+ width:580px;   
+ font-family: Arial; font-size: 15pt; 
+}
+
+   #state option{
+  width:580px;   
+  font-family: Arial; font-size: 15pt; 
+}
+
+td{font-family: Arial; font-size: 15pt;}
+
+
+    </style>
+
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>FSKTM Alumni</title>
+  <title>UM Alumni</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
   <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -52,41 +123,6 @@ session_start();
   <script src="js/respond.min.js"></script>
   <![endif]-->
 
-<script type = "text/javascript">
-            function CheckSearch(val) {
-                //hide all elements
-                var name = document.getElementById("jobtitle");
-                name.style.display = "none";
-                name.value = "";
-                
-                var programme = document.getElementById("industry");
-                programme.style.display = "none";
-                programme.value = "";
-                
-                var major = document.getElementById("state");
-                major.style.display = "none";
-                major.value = "";
-                
-                //depends on index selected, show the desired one
-                if (val.selectedIndex === 0){
-                     document.getElementById("jobtitle").style.display = "block";
-                }else if(val.selectedIndex === 1){
-                     document.getElementById("industry").style.display = "block";
-                }else{                    
-                     document.getElementById("state").style.display = "block";
-                }
-              
-            }
-         
-        </script> 
-
-<STYLE TYPE="text/css">
-
-
-
-td{font-family: Arial; font-size: 15pt;}
-
-</STYLE>
   </head>
   <body>
     <div id="fh5co-wrapper">
@@ -98,69 +134,78 @@ td{font-family: Arial; font-size: 15pt;}
 
 include_once 'DBConnect.php';
 
-if(!isset($_SESSION['admin']))
+if(!isset($_SESSION['user']))
 {
- header("Location: loginadmin.php");
+ header("Location: signIn.php");
 }
-$res=mysqli_query($conn, "SELECT * FROM admin WHERE adminID=".$_SESSION['admin']);
-$adminRow=mysqli_fetch_array($res);
+$res=mysqli_query($conn, "SELECT * FROM user WHERE userID=".$_SESSION['user']);
+$userRow=mysqli_fetch_array($res);
 ?>
-
-          <span> Welcome back, admin - <?php echo $adminRow['userName']; ?></span>
-           <span><a href="Logoutadmin.php?logout=1"><font face="verdana">Log out</a></font></span>
+ <span> Welcome back,   <?php echo $userRow['userName']; ?></span>
+          <span> <a href="Logout.php?logout=1">Log Out</a></span>
         </div>
       </div>
       <!-- end:top -->
       <header id="fh5co-header-section">
-        <div class="container">
+        <div class="container"> 	
           <div class="nav-header">
             <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-               <h1 id="fh5co-logo" ><a href="admin.php" style="color:#800080">FSKTM Alumni</a></h1>
+            <h1 id="fh5co-logo" ><a href="index.html" style="color:#800080">FSKTM Alumni</a></h1>
             <!-- START #fh5co-menu-wrap -->
-<nav id="fh5co-menu-wrap" role="navigation">
+ <nav id="fh5co-menu-wrap" role="navigation">
             <ul class="sf-menu" id="fh5co-primary-menu">
-            <li><a href="admin.php">Home</a></li>
+              <li><a href="alumni.php">Home</a></li>
+			  
+			  <li>
+                    <a href="#" class="fh5co-sub-ddown">Alumni Area</a>
+                      <ul class="fh5co-sub-menu">
+                      <li><a href="myAccount.php">My Account</a></li>
+					  <li><a href="myProfile.php">My Profile</a></li>
+					   <li><a href="myWall.php">My Wall</a></li>
+					   <li><a href="alumniDirectory1.php">Alumni Directory</a></li>
+                  <li><a target="_blank">Friend Network</a>
+                      <ul class="fh5co-sub-menu">
+                      <li><a href="friendList.php">Friend List</a></li>
+                      <li><a href="approveFriend.php" >Friend Request</a></li>
+					   <li><a href="cancelFriendRequest.php" >Cancel Friend Request</a></li>
+                      </ul>
+					  <li><a target="_blank">Testimonial</a>
+                      <ul class="fh5co-sub-menu">
+                      <li><a href="testimonialList.php">Testimonial List</a></li>
+                      <li><a href="myTestimonialList.php" >My Testimonial</a></li>
+					   <li><a href="createTestimonial1.php">Create Testimonial</a></li>
+                      </ul>
+					    <li><a href="studentViewTitle.php">Answer Survey</a></li>
+                    </ul>
+                  </li>
 
-                 
                   <li>
                     <a href="#" class="fh5co-sub-ddown">News & Event</a>
                       <ul class="fh5co-sub-menu">
-                      <li><a target="_blank">News & Announcement</a>
-                      <ul class="fh5co-sub-menu">
-                      <li><a href="photoadmin.php">Upload Photo</a></li>
-                      <li><a href="news.php">View News</a></li>
-
-                      </ul>
+                      <li><a href="alumniViewNew.php">News & Announcement</a>
                       </li>
-                      <li><a target="_blank">Manage Events</a>
-					    <ul class="fh5co-sub-menu">
-						 <li><a href="viewEvents.php">View Events</a></li>
-                      <li><a href="assignEM.php">Assign Event Manager</a></li></li>
-
-                      </ul>
+                      <li><a href="alumniViewEvent.php" target="_blank">View Events</a></li>
                     </ul>
                   </li>
                    
-                <li><a href="admin.php">Job Area</a>
+                <li> <a href="#" class="fh5co-sub-ddown">Job Area</a>
                 <ul class="fh5co-sub-menu">
-                  <li><a href="joblist.php">View All Jobs</a></li>
-                  <li><a href="joblistalumni.php">View My Job List</a></li>
-                  <li><a href="createjob.php">Post Job Advertisement</a></li>
+                  <li><a href="jobList.php">View All Jobs</a></li>
+                  <li><a href="myJobList.php">View My Job</a></li>
+                  <li><a href="createJob.php">Post Job</a></li>
                 </ul>
               </li>
-                <li><a href="admin.php">Manage Alumni</a>
+              
+			  
+                <li><a target="_blank">Research Collaboration</a>
                 <ul class="fh5co-sub-menu">
-                  <li><a href="admin.php">Directory</a></li>
-                  <li><a href="admin.php">Testimonial</a></li>
-                  <li><a href="admin.php">FYP Research</a></li>
-                  <li><a href="index_excel.php">Generate Account</a></li>
-                </ul>
-              </li>
-                <li><a href="admin.php">Report</a>
-                <ul class="fh5co-sub-menu">
-                  <li><a href="survey.php">Manage Survey</a></li>
-                  <li><a href="report.php">Analysis Report</a></li>
-
+				   <li><a href="researchTitleList.php">Title List</a>
+				   <li><a href="researchMyTitleList.php">My Title List</a>
+				   <li><a href="researchCreate.php">Propose Title</a>
+				   
+				   </li>
+				    
+				  
                 </ul>
               </li>
             
@@ -171,9 +216,7 @@ $adminRow=mysqli_fetch_array($res);
       </header>
       
     </div>
-    
 
-   
     <div class="fh5co-hero" style="height:100%;">
       <div class="fh5co-overlay" style="height:100%;z-index:0;"></div>
       <div style="background-image: url(images/background.jpg); background-size: cover;">
@@ -182,20 +225,19 @@ $adminRow=mysqli_fetch_array($res);
 
 
 <div style = "background: rgba(255, 255, 255, 0.9);">
-  <h2 style = "color: #7c795d; font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px; margin: 0;text-align: center;">Joblist</h2>
+  <h2 style = "color: #7c795d; font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px; margin: 0;text-align: center;">Job List</h2>
+  <div align="center">
   
-
- <p style="text-align: center;" id="testestest">You  may search either by Job Title, Industry or State.</p> 
-        <form  method="GET" action="process_searchjob.php"  > 
+ <form method="GET" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
         <div align="center">
-            <select id="search" onchange="CheckSearch(this)">
+            <select id="search" name = "search" onchange="CheckSearch(this)">
                 <option value="jobtitle">Job Title</option>
                 <option value="industry">Industry</option>
                 <option value="state">State</option>
                 <option value="" hidden selected>Please select what to search</option>
             </select>
             <br><br>
-            <input  type="text" name="jobtitle" id="jobtitle" style="display: none" > 
+            <input  type="text" name="jobtitle" id="jobtitle" size ="95" style="display: none" required > 
 
             <select name="industry" id="industry" style="display: none">
               <option selected="selected">Computer and Information Technology</option>
@@ -240,12 +282,15 @@ $adminRow=mysqli_fetch_array($res);
                <option value="Other Country">Other Country</option>
                 <option value="" hidden selected>Please select a state</option>
             </select>
+			<br/>
+			
+			 <p style="text-align: center;"><input class="btn btn-primary" type="submit" name="submit" value="Search">  <font face="verdana">
   
-   <input  type="submit" name="submit" value="Search"> 
+  
    </div>
         </form> 
   <br/>
-  <table style = "width:100%" border = "1">
+  <table style = "width:80%" border = "1">
   <col width = "10%">
   <col width = "30%">
   <col width = "25%">
@@ -273,24 +318,98 @@ $adminRow=mysqli_fetch_array($res);
 
 <?php
 
-mysql_connect("localhost", "root", "") or
+	mysql_connect("localhost", "root", "") or
     die("Could not connect: " . mysql_error());
-mysql_select_db("alumnidatabase");
+	mysql_select_db("alumnidatabase");
+	
+	if(isset($_GET['submit'])) {
+		$search = $_GET['search'];
+		$jobtitle = $_GET['jobtitle'];
+		if (isset($_GET['jobtitle']) && $_GET['jobtitle']!=""){
+			echo "Search Item: " .$_GET['jobtitle'];
+			$result = mysql_query("SELECT jobID,title,company,created_by,create_date,admin_ind FROM job WHERE title LIKE '" . $jobtitle . "%' order by create_date desc");
+			$number = 1;
+			echo "<br/>";
+			echo "<br/>";
+			while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
+				if($row['5'] == 'N'){
+					echo "  <tr><td>".$number.".</td> 
+					<td> <a href='viewJob.php?uid=".$row['0']."'> ".$row['1']." </a> </td><td>".$row['2']."</td><td>".$row['3']."</td> <td>".$row['4']."</td></tr>";
+				}
+				else{
+					echo "  <tr><td>".$number.".</td> 
+					<td> <a href='viewJob.php?uid=".$row['0']."'> ".$row['1']." </a> </td><td>".$row['2']."</td><td>Admin</td> <td>".$row['4']."</td></tr>";
+				}
+			$number = $number + 1;
+			}
+		}
+		
+		else if (isset($_GET['industry']) && $_GET['industry']!="") {
+			echo "Search Item: " .$_GET['industry'];
+			$result = mysql_query("SELECT jobID,title,company,created_by,create_date,admin_ind FROM job WHERE industry LIKE '" . $_GET["industry"] . "'order by create_date desc");
+			$number = 1;
+			echo "<br/>";
+			echo "<br/>";
+			while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
+				if($row['5'] == 'N'){
+					echo "  <tr><td>".$number.".</td> 
+					<td> <a href='viewJob.php?uid=".$row['0']."'> ".$row['1']." </a> </td><td>".$row['2']."</td><td>".$row['3']."</td> <td>".$row['4']."</td></tr>";
+				}
+				else{
+					echo "  <tr><td>".$number.".</td> 
+					<td> <a href='viewJob.php?uid=".$row['0']."'> ".$row['1']." </a> </td><td>".$row['2']."</td><td>Admin</td> <td>".$row['4']."</td></tr>";
+				}
+			$number = $number + 1;
+			}
+			
+		}
+		
+		else if (isset($_GET['state']) && $_GET['state']!="") {
+			echo "Search Item: " .$_GET['state'];
+			$result = mysql_query("SELECT jobID,title,company,created_by,create_date,admin_ind FROM job WHERE state LIKE '" . $_GET["state"] . "'order by create_date desc");
+			$number = 1;
+			echo "<br/>";
+			echo "<br/>";
+	
+			while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
+				if($row['5'] == 'N'){
+					echo "  <tr><td>".$number.".</td> 
+					<td> <a href='viewJob.php?uid=".$row['0']."'> ".$row['1']." </a> </td><td>".$row['2']."</td><td>".$row['3']."</td> <td>".$row['4']."</td></tr>";
+				}
+				else{
+					echo "  <tr><td>".$number.".</td> 
+					<td> <a href='viewJob.php?uid=".$row['0']."'> ".$row['1']." </a> </td><td>".$row['2']."</td><td>Admin</td> <td>".$row['4']."</td></tr>";
+				}
+			$number = $number + 1;
+			}
+			
+			
+		}
+		
+		
 
-$result = mysql_query("SELECT jobID,title,company,created_by,create_date,admin_ind FROM job order by create_date desc");
-$number = 1;
-while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
-if($row['5'] == 'N'){
-echo "  <tr><td>".$number.".</td> 
-      <td> <a href='viewJob.php?uid=".$row['0']."'> ".$row['1']." </a> </td><td>".$row['2']."</td><td>".$row['3']."</td> <td>".$row['4']."</td></tr>";
-}
-else{
-echo "  <tr><td>".$number.".</td> 
-      <td> <a href='viewJob.php?uid=".$row['0']."'> ".$row['1']." </a> </td><td>".$row['2']."</td><td>Admin</td> <td>".$row['4']."</td></tr>";
-}
-$number = $number + 1;
+	}
 
-}
+	else {
+		$result = mysql_query("SELECT jobID,title,company,created_by,create_date,admin_ind FROM job order by create_date desc");
+		$number = 1;
+	
+		while ($row = mysql_fetch_array($result, MYSQL_NUM)) {
+			if($row['5'] == 'N'){
+				echo "  <tr><td>".$number.".</td> 
+				<td> <a href='viewJob.php?uid=".$row['0']."'> ".$row['1']." </a> </td><td>".$row['2']."</td><td>".$row['3']."</td> <td>".$row['4']."</td></tr>";
+			}
+			else{
+				echo "  <tr><td>".$number.".</td> 
+				<td> <a href='viewJob.php?uid=".$row['0']."'> ".$row['1']." </a> </td><td>".$row['2']."</td><td>Admin</td> <td>".$row['4']."</td></tr>";
+			}
+			$number = $number + 1;
+		}
+	
+	}
+
+
+	
 
 ?>
 
@@ -306,8 +425,10 @@ $number = $number + 1;
 }
 ?>
 
+ <p style="text-align: center;"><a class="btn btn-primary" href="alumni.php"><font face="verdana"><b>Back to Home</b></a> </p>
 <br>
-
+  
+</div>
 </div>
         </div>
       </div>
@@ -334,4 +455,3 @@ $number = $number + 1;
 
   </body>
 </html>
-

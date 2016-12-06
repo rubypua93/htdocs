@@ -205,6 +205,7 @@ $number = $number + 1;
  
   </table> <br>
  <br/>
+  <p style="text-align: center;"><a class="btn btn-primary" href="admin.php"><font face="verdana"><b>Back</b></a> </p>
 	   <br/>
 	    <br/>
 	   <br/>

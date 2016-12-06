@@ -201,9 +201,9 @@ $newsRow=mysqli_fetch_array($res);
     <div id="right">
      <div id="content">
    
-  <p><label>Title: </label><input type="text" name="title" size="50" value="<?php echo $newsRow['title']; ?>" required/></p>
+  <p><label>*Title: </label><input type="text" name="title" size="50" value="<?php echo $newsRow['title']; ?>" required/></p>
        
-    <p><label> Details: </label> <textarea rows="4" cols="50" name="details"><?php echo $newsRow['details']; ?> </textarea>
+    <p><label> *Details: </label> <textarea rows="4" cols="50" name="details"><?php echo $newsRow['details']; ?> </textarea>
      <input type="hidden" name = "id" value = "<?php echo $newsRow['newsID']; ?>" required/></p>
     <p>
     <label>Current Picture Display</label>

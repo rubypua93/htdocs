@@ -12,17 +12,22 @@ if(isset($_POST['btn-login']))
  $upass = mysqli_real_escape_string($conn, $_POST['pass']);
  $res=mysqli_query($conn, "SELECT * FROM user WHERE email='$email'");
  $row=mysqli_fetch_array($res);
- if($row['password']==($upass))
+ if($row['password']==($upass) && $row['status'] == '0' )
  {
   $_SESSION['user'] = $row['userID'];
     $_SESSION['userName'] = $row['userName'];
   header("Location: alumni.php");
  }
- else
+ else if ($row['status'] == '1')
  {
   ?>
-        <script>alert('wrong details');</script>
+        <script>alert('Your registration not yet approved.');</script>
         <?php
+ }
+ else{
+	?>
+        <script>alert('Wrong Details.');</script>
+        <?php 
  }
  
 }
@@ -122,7 +127,7 @@ $adminRow=mysqli_fetch_array($res);
               <li class="active">
                 <a href="loginadmin.php">Login</a>
               </li>
-              <li><a href="register1.php">Sign Up</a></li>
+              <li><a href="beforeRegister.php">Sign Up</a></li>
               <li><a href="homepage.php">Home</a></li>
             </ul>
           </nav>

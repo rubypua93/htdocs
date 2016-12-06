@@ -8,7 +8,8 @@ $getOrganizer = $_POST['organizer'];
 $getSpeaker = $_POST['speaker'];
 $getStartdate = $_POST['startdate'];
 $getEnddate = $_POST['enddate'];
-$getTime = $_POST['time'];
+$getStartTime = $_POST['start_time'];
+$getEndTime = $_POST['end_time'];
 $getLocation = $_POST['location'];
 $getInfo = $_POST['info'];
 $getName = $_POST['name'];
@@ -21,7 +22,7 @@ $getUID = $_POST['id'];
 if(empty($_FILES["file"]["name"])){
 	
 	 $sql = "UPDATE events SET title = '".$getTitle."',  organizer = '".$getOrganizer."', speaker = '".$getSpeaker."',  start_date = '".$getStartdate."'
-	 ,  end_date = '".$getEnddate."', time = '".$getTime."', location = '".$getLocation."',  further_info = '".$getInfo."'
+	 ,  end_date = '".$getEnddate."', start_time = '".$getStartTime."', end_time = '".$getEndTime."',location = '".$getLocation."',  further_info = '".$getInfo."'
 	 ,  contact_name = '".$getName."',   contact_phone = '".$getPhonenumber."', contact_email = '".$getEmail."',   contact_website = '".$getWebsite."'
 
 				
@@ -42,7 +43,7 @@ $eventFileRow=mysqli_fetch_array($res);
 		unlink( __DIR__."/events/".$oldfnm."");
 		
 	 $sql = "UPDATE events SET title = '".$getTitle."',  organizer = '".$getOrganizer."', speaker = '".$getSpeaker."',  start_date = '".$getStartdate."'
-	 ,  end_date = '".$getEnddate."', time = '".$getTime."', location = '".$getLocation."',  further_info = '".$getInfo."'
+	 ,  end_date = '".$getEnddate."', start_time = '".$getStartTime."',end_time = '".$getEndTime."', location = '".$getLocation."',  further_info = '".$getInfo."'
 	 ,  contact_name = '".$getName."',   contact_phone = '".$getPhonenumber."', contact_email = '".$getEmail."',   contact_website = '".$getWebsite."'
 		,   file = '".$fnm."'
 				
@@ -77,7 +78,7 @@ $res=mysqli_query($conn, "SELECT * FROM eventmanager WHERE eventmanagerID=".$eve
 $managerRow=mysqli_fetch_array($res);
 	
 
-$from = new SendGrid\Email(null, "adminfsktm@hotmail.com");
+$from = new SendGrid\Email(null, "fsktmalumni@hotmail.com");
 $to = new SendGrid\Email(null,$managerRow['email']);
 $subject = "Assignation of Event Manager";
 $content = new SendGrid\Content("text/plain", "Hi ".$managerRow['name']."! 
@@ -85,7 +86,7 @@ You have been assigned to be the event manager of  ".$_POST['title'].". Please c
 \n Email address: ".$managerRow['email']."  \n Password: ".$managerRow['password'].  "");
 $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-$apiKey = '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';
+$apiKey = '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';
 $sg = new \SendGrid($apiKey);
 
 $response = $sg->client->mail()->send()->post($mail);

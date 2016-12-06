@@ -5,7 +5,7 @@ $testimonial_ID = $_POST['testimonial_ID'];
 
 	require_once("DBConnect.php");
 	require("/lib/sendgrid-php/sendgrid-php.php");
-	 echo "<script type='text/javascript'>alert('Are you sure you want to confirm this?');window.history.back();</script>";
+	 //echo "<script type='text/javascript'>alert('Are you sure you want to confirm this?');window.history.back();</script>";
 
 foreach( $testimonial_ID as $key => $n ) {
 	
@@ -27,7 +27,7 @@ $subject = "Application Approved";
 $content = new SendGrid\Content("text/plain", "Dear alumni, your testimonial have been approved. Please login to Alumni website by clicking this link http://localhost/New%20Alumni%20Webpage/signIn.php");
 $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-$apiKey = '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';
+$apiKey = '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';
 $sg = new \SendGrid($apiKey);
 
 $response = $sg->client->mail()->send()->post($mail);
@@ -42,7 +42,7 @@ echo $response->body();
 }
 
 else if ($_POST['action'] == 'Reject') {
-	  echo "<script type='text/javascript'>alert('Are you sure you want to reject this?');window.history.back();</script>";
+	  //echo "<script type='text/javascript'>alert('Are you sure you want to reject this?');window.history.back();</script>";
 	$testimonial_ID = $_POST['testimonial_ID'];
 	$testimonial_ID = $_POST['testimonial_ID'];
 
@@ -71,7 +71,7 @@ $subject = "Application Rejected";
 $content = new SendGrid\Content("text/plain", "Dear alumni, your testmonial have been rejected.");
 $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-$apiKey = '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';
+$apiKey = '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';
 $sg = new \SendGrid($apiKey);
 
 $response = $sg->client->mail()->send()->post($mail);
@@ -87,7 +87,7 @@ echo $response->body();
 
 	
   
- 
+    header("Location: testimonialListAdmin.php"); 
 
 
 ?>

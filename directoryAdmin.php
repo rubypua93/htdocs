@@ -96,7 +96,7 @@ td{font-family: Arial; font-size: 15pt;}
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>FSKTM Alumni</title>
+ <title>FSKTM Alumni</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
   <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -377,15 +377,17 @@ $adminRow=mysqli_fetch_array($res);
 			<select name="year" id="year" style="display: none">
 				<option value="" hidden selected="selected">Please select a year</option>
 				<?php
-					for($currentYear = 2012; $currentYear > 1984; $currentYear--){
+					for($currentYear = 2013; $currentYear > 1984; $currentYear--){
 						$currentYear1 = $currentYear + 1;
-						if($year == $currentYear){
-							echo "<option value='$currentYear'/'$currentYear1' selected='selected'>$currentYear/$currentYear1</option>";
+						$tempYear = $currentYear.'/'.$currentYear1;
+						if($year == $tempYear){
+							echo "<option value='$tempYear' selected='selected'>$currentYear/$currentYear1</option>";
 						}
 						else{
-							echo "<option value='$currentYear'/'$currentYear1'>$currentYear/$currentYear1</option>";
+							echo "<option value='$tempYear'>$currentYear/$currentYear1</option>";
 						}
 					}
+					
 				
 				?>
 							

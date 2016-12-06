@@ -187,12 +187,12 @@ $adminRow=mysqli_fetch_array($res);
  <form action="process_news.php" method="post" enctype="multipart/form-data" onSubmit="alert('Successful posted!');">
 
                            <p>
-               <label><font color="purple">Title:  </font></label>             
+               <label><font color="purple">*Title:  </font></label>             
                             <input type="text" size="70" name="title" required/>
                             </p>
                            
                <p>
-              <label><font color="purple">Details:</font></label> 
+              <label><font color="purple">*Details:</font></label> 
                <textarea textarea rows="3" cols="69" name="details" required/></textarea>
               </p>
               

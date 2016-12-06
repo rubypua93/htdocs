@@ -16,14 +16,28 @@ session_start();
     //header("Location: alumniViewPerEvents.php?uid=$eventsID");
 	
 	//header("Location: processGoogleCalendar.php?uid=$eventsID");
+	
+	$userID  = $_SESSION['user'];
+	$eventsID = $_GET['uid'];
+	$q = "insert into attendees(eventsID,userID,eventuuid) values('".$eventsID."','".$userID."',REPLACE(UUID(),'-',''))";
+		
+
+	mysqli_query($conn, $q) or die(mysql_error());
+		
 
 $res=mysqli_query($conn, "SELECT * FROM events WHERE eventsID=".$eventsID );
 $eventRows=mysqli_fetch_array($res);
+
+$res1=mysqli_query($conn, "SELECT * FROM attendees WHERE eventsID=".$eventsID." AND userID=".$userID."" );
+$attendesRows=mysqli_fetch_array($res1);
 ?>
 
 <html>
   <head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
     <script type="text/javascript">
+	
       // Your Client ID can be retrieved from your project in the Google
       // Developer Console, https://console.developers.google.com
       var CLIENT_ID = '529374141870-0fa8rtg4cvj7ve4odtoa6rg30kdqebsm.apps.googleusercontent.com';
@@ -87,15 +101,16 @@ $eventRows=mysqli_fetch_array($res);
        * appropriate message is printed.
        */
       function listUpcomingEvents() {var event = {
-  'summary': <?php echo $eventRows['title']; ?>,
-  'location': <?php echo $eventRows['location']; ?>,
-  'description': <?php echo $eventRows['further_info']; ?>,
+  'summary': '<?php echo $eventRows['title']; ?>',
+      'id': '<?php echo $attendesRows['eventuuid']; ?>',
+  'location': '<?php echo $eventRows['location']; ?>',
+  'description': '<?php echo $eventRows['further_info']; ?>',
   'start': {
-    'date': '<?php echo $eventRows['start_date']; ?>',
+    'dateTime': '<?php echo $eventRows['start_date']; ?>' + 'T' +'<?php echo $eventRows['start_time']; ?>' + ':00',
     'timeZone': 'Singapore'
   },
   'end': {
-    'date': '<?php echo $eventRows['start_date']; ?>',
+    'dateTime': '<?php echo $eventRows['end_date']; ?>'+ 'T' +'<?php echo $eventRows['end_time']; ?>' + ':00',
     'timeZone': 'Singapore'
   },
   'recurrence': [
@@ -130,7 +145,7 @@ self.close();
       function appendPre(message) {
         var pre = document.getElementById('output');
         var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
+        pre.appendChild(textContent); 
       }
 
     </script>

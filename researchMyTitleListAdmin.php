@@ -56,7 +56,7 @@ td{font-family: Arial; font-size: 15pt;}
   <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>FSKTM Alumni</title>
+  <title>UM Alumni</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
   <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -120,7 +120,7 @@ $res=mysqli_query($conn, "SELECT * FROM admin WHERE adminID=".$_SESSION['admin']
 $adminRow=mysqli_fetch_array($res);
 ?>
 
-         <span> Welcome back, admin - <?php echo $adminRow['userName']; ?></span>
+        <span> Welcome back, admin - <?php echo $adminRow['userName']; ?></span>
            <span><a href="Logoutadmin.php?logout=1"><font face="verdana">Log out</a></font></span>
         </div>
       </div>
@@ -201,8 +201,8 @@ $adminRow=mysqli_fetch_array($res);
         </div>
       </header>
       
+      
     </div>
-    
      <div class="fh5co-hero" style="height:100%;">
       <div class="fh5co-overlay" style="height:100%;z-index:0;"></div>
       <div style="background-image: url(images/background.jpg); background-size: cover;">
@@ -248,7 +248,7 @@ mysql_connect("localhost", "root", "") or
     die("Could not connect: " . mysql_error());
 mysql_select_db("alumnidatabase");
 
-$result = mysqli_query($conn,"SELECT researchID, title,author,date FROM researchcollaboration WHERE admin_ind = 'Y' AND createUserID=  " .$_SESSION['admin']);
+$result = mysqli_query($conn,"SELECT researchID, title,author,date FROM researchcollaboration WHERE admin_ind = 'Y' AND createUserID=  '" .$_SESSION['admin']."' order by date desc");
 $number = 1;
 
 
@@ -306,8 +306,8 @@ echo "<br/>";
              
                 
                  </form>
-
- <p style="text-align: center;"><a class="btn btn-primary" href="admin.php"><font face="verdana"><b>Back to Home</b></a> </p>
+<p style="text-align: center;"><a class="btn btn-primary" href="researchCreateAdmin.php"><font face="verdana"><b>Post a research title</b></a> </p>
+ <p style="text-align: center;"><a class="btn btn-primary" href="researchTitleListAdmin.php"><font face="verdana"><b>Back to List</b></a> </p>
  </br>
  </br>
  

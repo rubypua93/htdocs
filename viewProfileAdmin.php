@@ -28,10 +28,11 @@ session_start();
  
  <style type="text/css">
    label {
-	   float:left;
+	   
 width:25%;
 display:inline-block;	
-}
+padding-left: 80px;
+	}
 
 #wgtmsr{
  width:200px;   
@@ -48,7 +49,7 @@ display:inline-block;
  <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>FSKTM Alumni</title>
+  <title>UM Alumni</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
   <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -121,7 +122,8 @@ $userRow=mysqli_fetch_array($res);
 
 ?>
 
-           <span> Welcome back, admin - <?php echo $adminRow['userName']; ?></span>
+          
+                           <span> Welcome back, admin - <?php echo $adminRow['userName']; ?></span>
            <span><a href="Logoutadmin.php?logout=1"><font face="verdana">Log out</a></font></span>
         </div>
       </div>
@@ -203,35 +205,41 @@ $adminRow=mysqli_fetch_array($res);
       </header>
       
     </div>
-    
-     <div class="fh5co-hero" style="height:100%;">
+
+    <div class="fh5co-hero" style="height:100%;">
       <div class="fh5co-overlay" style="height:100%;z-index:0;"></div>
       <div style="background-image: url(images/background.jpg); background-size: cover;">
         <div class="desc animate-box" style = "padding-top: 200px;padding-left:10%;padding-right:10%;">
           
 
+
 <div style = "background: rgba(255, 255, 255, 0.9);">
   <h2 style = "color: #7c795d; font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px; margin: 0;text-align: center;">Profile</h2>
-  <div align="center">
+  <div align="left">
   
    
 
-
+<center>
                       
  <?php
                     $image = "uploads/". $userRow['profilepicture'];
+					$image2 = $userRow['profilepictureLink'];
 					
 					 if ($userRow['profilepicture'] !=null){
 					$image1 = $image;
 		} 
-		else{
+		else if ($userRow['profilepictureLink']!=null){
+			$image1 = $image2;
+		}
+		else {
 			
 			$image1 = "uploads/noprofilepicture.png";
 		}		
 		?>
 		
+		
                 
-		<img id="picture" src=<?= $image1 ?> alt="your image" height=300 width=300 />	</p>	
+		<img id="picture" src=<?= $image1 ?> alt="your image" height=300 width=300 />	</p>	</center>
 		
 							
                       
@@ -247,7 +255,7 @@ $adminRow=mysqli_fetch_array($res);
 		<p><label> <font color="purple"><b>Major:  </b></font> </label>
 		<input type="text" size="70" name="major" value="<?php echo $userRow['major']; ?>  " disabled ;/>
 		</p>
-		<p><label><font color="purple"><b>Graduate Year:  </b></font> </label>
+		<p><label><font color="purple"><b>Intake Year:  </b></font> </label>
 		<input type="text" size="70" name="graduateYear" value="<?php echo $userRow['graduateYear']; ?> " disabled ;/>
 		</p>
 		<p><label><font color="purple"><b>Matric Number:  </b></font> </label>

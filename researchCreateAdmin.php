@@ -116,8 +116,8 @@ $adminRow=mysqli_fetch_array($res);
 include_once 'DBConnect.php';
 
 $res=mysqli_query($conn, "SELECT fileName FROM logo where name = 'logo' limit 1");
-$adminRow=mysqli_fetch_array($res);
-			  echo  "<img src='logo/".$adminRow['fileName']."' alt='fsktm' style='width:90px;height:95px;'></a></h1>";
+$logoRow=mysqli_fetch_array($res);
+			  echo  "<img src='logo/".$logoRow['fileName']."' alt='fsktm' style='width:90px;height:95px;'></a></h1>";
 			   ?>
 			    <!--logo -->
             <!-- START #fh5co-menu-wrap -->
@@ -246,7 +246,7 @@ $adminRow=mysqli_fetch_array($res);
                 
                  </form>
 
-<p style="text-align: center;"><a class="btn btn-primary" href="admin.php"><font face="verdana"><b>Back to Home</b></a> </p>
+<p style="text-align: center;"><a class="btn btn-primary" href="researchTitleListAdmin.php"><font face="verdana"><b>Back to List</b></a> </p>
  
  
   

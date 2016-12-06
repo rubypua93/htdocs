@@ -18,12 +18,16 @@ include_once 'DBConnect.php';
 			$fnm = $_POST["researchID"];
 			move_uploaded_file($_FILES["attachment"]["tmp_name"], __DIR__."/researchAttachment/" . $fnm);
 			
+			$file = "UPDATE researchcollaboration SET attachment = '".$fnm."'
+               WHERE researchID =" .$_POST["researchID"];
+		mysqli_query($conn, $file) or die(mysql_error());
+			
 			echo "<script type='text/javascript'>alert('You have successfully edited your title.')</script>";
 		}
 	
 	
 	
-		else {
+		else if ($_POST['action'] == 'Delete') {
 			
 			$sql = "DELETE  FROM researchcollaboration WHERE researchID =" .$_POST["researchID"];
 			mysqli_query($conn, $sql) or die(mysql_error());

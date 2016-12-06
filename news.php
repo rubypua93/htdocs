@@ -208,6 +208,7 @@ $number = $number + 1;
 <br>
    <p style="text-align: center;"><a class="btn btn-primary" href="createnews.php"><font face="verdana"><b>Create news</b></a> </p>
   <p style="text-align: center;"><a class="btn btn-primary" href="deletenews.php"><font face="verdana"><b>Delete news</b></a> </p>
+    <p style="text-align: center;"><a class="btn btn-primary" href="admin.php"><font face="verdana"><b>Back</b></a> </p>
 <br>
 </div>
         </div>

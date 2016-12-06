@@ -24,7 +24,7 @@
 	
 	if (isset($_SESSION['admin'])){
 		$adminUserName  = $_SESSION['adminUserName'];
-		$q = "insert into events(title, organizer, speaker, start_date, end_date, time, location, further_info, contact_name, contact_phone, contact_email,contact_website,file, create_date, created_by, admin_ind, em_ind) values('".$_POST["title"]."','".$_POST["organizer"]."','".$_POST["speaker"]."','".$_POST["startdate"]."', '".$_POST["enddate"]."','".$_POST["time"]."', '".$_POST["location"]."', '".$_POST["info"]."', '".$_POST["name"]."', '".$_POST["phonenumber"]."','".$_POST["email"]."','".$_POST["website"]."','".$fnm."', NOW(),'admin-".$adminUserName."', 'Y', 'N')";
+		$q = "insert into events(title, organizer, speaker, start_date, end_date, start_time, end_time, location, further_info, contact_name, contact_phone, contact_email,contact_website,file, create_date, created_by, admin_ind, em_ind,eventuuid) values('".$_POST["title"]."','".$_POST["organizer"]."','".$_POST["speaker"]."','".$_POST["startdate"]."', '".$_POST["enddate"]."','".$_POST["starttime"]."', '".$_POST["endtime"]."','".$_POST["location"]."', '".$_POST["info"]."', '".$_POST["name"]."', '".$_POST["phonenumber"]."','".$_POST["email"]."','".$_POST["website"]."','".$fnm."', NOW(),'admin-".$adminUserName."', 'Y', 'N',REPLACE(UUID(),'-',''))";
 		
 	
 	// -- create loop to loop through all assigned eventmanager
@@ -35,7 +35,7 @@
     }
 	else{
 		$name  = $_SESSION['eventmanagerName'];
-		$q = "insert into events(title, organizer, speaker, start_date, end_date, time, location, further_info, contact_name, contact_phone, contact_email,contact_website,file, create_date, created_by, admin_ind, em_ind) values('".$_POST["title"]."','".$_POST["organizer"]."','".$_POST["speaker"]."','".$_POST["startdate"]."', '".$_POST["enddate"]."','".$_POST["time"]."', '".$_POST["location"]."', '".$_POST["info"]."', '".$_POST["name"]."', '".$_POST["phonenumber"]."','".$_POST["email"]."','".$_POST["website"]."','".$fnm."',NOW(),'event manager-".$eventmanagerName."', 'N', 'Y')";
+		$q = "insert into events(title, organizer, speaker, start_date, end_date, start_time, end_time, location, further_info, contact_name, contact_phone, contact_email,contact_website,file, create_date, created_by, admin_ind, em_ind) values('".$_POST["title"]."','".$_POST["organizer"]."','".$_POST["speaker"]."','".$_POST["startdate"]."', '".$_POST["enddate"]."','".$_POST["time"]."', '".$_POST["location"]."', '".$_POST["info"]."', '".$_POST["name"]."', '".$_POST["phonenumber"]."','".$_POST["email"]."','".$_POST["website"]."','".$fnm."',NOW(),'event manager-".$eventmanagerName."', 'N', 'Y')";
     }
 	
 	
@@ -92,7 +92,7 @@ $res=mysqli_query($conn, "SELECT * FROM eventmanager WHERE eventmanagerID=".$eve
 $managerRow=mysqli_fetch_array($res);
 	
 
-$from = new SendGrid\Email(null, "adminfsktm@hotmail.com");
+$from = new SendGrid\Email(null, "fsktmalumni@hotmail.com");
 $to = new SendGrid\Email(null,$managerRow['email']);
 $subject = "Assignation of Event Manager";
 $content = new SendGrid\Content("text/plain", "Hi ".$managerRow['name']."! 
@@ -100,7 +100,7 @@ You have been assigned to be the event manager of  ".$eventRow['title'].". Pleas
 \n Email address: ".$managerRow['email']."  \n Password: ".$managerRow['password'].  "");
 $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-$apiKey = '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';
+$apiKey = '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';
 $sg = new \SendGrid($apiKey);
 
 $response = $sg->client->mail()->send()->post($mail);

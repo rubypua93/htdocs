@@ -108,7 +108,7 @@ $adminRow=mysqli_fetch_array($res);
               <li>
                 <a href="loginadmin.php">Login</a>
               </li>
-              <li><a href="register1.php">Sign Up</a></li>
+              <li><a href="beforeRegister.php">Sign Up</a></li>
               <li><a href="homepage.php">Home</a></li>
             </ul>
           </nav>
@@ -155,9 +155,13 @@ $eventsRow=mysqli_fetch_array($res);
 	   <input type="text" size="70" name="end_date" value="<?php echo $eventsRow['end_date']; ?> " disabled ;/>
 	   </p> 
 	   
-	       <p>  <label><font color="purple"><b>Time: </b></font></label>
-	   <input type="text" size="70" name="time" value="<?php echo $eventsRow['time']; ?> " disabled ;/>
+	       <p>  <label><font color="purple"><b>Start Time: </b></font></label>
+	   <input type="text" size="70" name="start_time" value="<?php echo $eventsRow['start_time']; ?> " disabled ;/>
 	   </p> 
+	   
+	     <p>  <label><font color="purple"><b>End Time: </b></font></label>
+	   <input type="text" size="70" name="end_time" value="<?php echo $eventsRow['end_time']; ?> " disabled ;/>
+	   </p>
 	   
 	       <p>  <label><font color="purple"><b>Location: </b></font></label>
 	   <input type="text" size="70" name="location" value="<?php echo $eventsRow['location']; ?> " disabled ;/>
@@ -205,7 +209,7 @@ $eventsRow=mysqli_fetch_array($res);
 <br>
 
 
-<p style="text-align: center;"><a class="btn btn-primary"  href="homepage.php"><font face="verdana">Back to homepage </a> </p>
+<p style="text-align: center;"><a class="btn btn-primary"  href="customViewEventsList.php"><font face="verdana">Back to Events List </a> </p>
    
 
 

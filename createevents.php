@@ -47,6 +47,9 @@ session_start();
 
   <!-- Modernizr JS -->
   <script src="js/modernizr-2.6.2.min.js"></script>
+    <script src="js/jquery.js"></script> 
+    <script src="js/moment.min.js"></script> 
+    <script src="js/combodate.js"></script> 
   <!-- FOR IE9 below -->
   <!--[if lt IE 9]>
   <script src="js/respond.min.js"></script>
@@ -99,6 +102,13 @@ display:inline-block;
     var e = document.getElementById(id);
     e.style.display = (e.style.display == 'block') ? 'none' : 'block';
  }
+ 
+$(function(){
+    $('#time').combodate({
+        firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
+        minuteStep: 1
+    });  
+});
 </script>
           <span> Welcome back, admin - <?php echo $adminRow['userName']; ?></span>
            <span><a href="Logoutadmin.php?logout=1"><font face="verdana">Log out</a></font></span>
@@ -201,30 +211,30 @@ $adminRow=mysqli_fetch_array($res);
 
 
        <p>
-               <label><font color="purple"><b>Title:   </b></font></label>             
+               <label><font color="purple"><b>*Title:   </b></font></label>             
                             <input type="text" size="70" name="title" required/>
                             </p>
-                           <p><label><font color="purple"><b>Organizer: </b></font> </label> 
+                           <p><label><font color="purple"><b>*Organizer: </b></font> </label> 
            <input type="text" size="70" name="organizer" required/></p>
               
        
                 
                
                <p>
-                            <label><font color="purple"><b>Speaker </b></font></label> 
+                            <label><font color="purple"><b>*Speaker </b></font></label> 
                            <input type="text" size="70" name="speaker" required/>
                            </p>
                
-               <p><label><font color="purple"><b>Start Date : </b></font> </label> 
-               <input type="date" size="70" id="startDate" name="startdate"  required/></p>
+               <p><label><font color="purple"><b>*Start Date : </b></font> </label> 
+               <input type="text" size="70" id="startDate" name="startdate"  required/></p>
               
               
                
                
                
                <p>
-                            <label><font color="purple"><b>End Date: </b></font></label> 
-                             <input type="date" size="70" id="endDate" name="enddate"  required/></p>
+                            <label><font color="purple"><b>*End Date: </b></font></label> 
+                             <input type="text" size="70" id="endDate" name="enddate"  required/></p>
 				<div class="row" id="errorMessageDiv">
 					<label></label>
 					<label class="control-label col-lg-5" style="color:red" id="errorMessageLabel"></label>
@@ -233,12 +243,20 @@ $adminRow=mysqli_fetch_array($res);
 						   
 			    
                <p>
-                            <label><font color="purple"><b>Time: </b></font></label> 
-                             <input type="text" size="70" name="time" required/></p>
+                            <label><font color="purple"><b>*Start Time: </b></font></label> 
+                             <!--<input type="text" size="70" name="starttime" required/></p>-->
+							 <input type="time" name="starttime"  min="00:00" max="23:59">
+							 
+                           </p>
+						   
+						    <p>
+                            <label><font color="purple"><b>*End Time: </b></font></label> 
+                             <input type="time" name="endtime"  min="00:00" max="23:59" required/></p>
+
                            </p>
 						   
                 <p>
-               <label><font color="purple"><b>Location:  </b></font> </label>             
+               <label><font color="purple"><b>*Location:  </b></font> </label>             
           <input type="text" size="70" name="location" required/>
                             </p>
                            
@@ -255,24 +273,24 @@ $adminRow=mysqli_fetch_array($res);
                            </p>
                
                 <p>
-               <label><font color="purple"><b>Contact Name:  </b></font> </label>             
+               <label><font color="purple"><b>*Contact Name:  </b></font> </label>             
                             <input type="text" size="70" name="name" value="-" required/>
                             </p>
                            
                <p>
-              <label><font color="purple"><b>Contact Phone Number: </b></font></label> 
+              <label><font color="purple"><b>*Contact Phone Number: </b></font></label> 
                <input type="text" size="70" name="phonenumber" value="-" required/>
               </p>
               
       
                
                 <p>
-               <label><font color="purple"><b>Email Address:  </b></font> </label>             
+               <label><font color="purple"><b>*Email Address:  </b></font> </label>             
                              <input type="text" size="70" name="email" value="-" required/>
                             </p>
                            
                <p>
-              <label><font color="purple"><b>Website: </b></font></label> 
+              <label><font color="purple"><b>*Website: </b></font></label> 
                 <input type="text" size="70" name="website" value="-" required/>
               </p>
 			

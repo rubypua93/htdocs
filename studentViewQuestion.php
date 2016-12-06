@@ -93,7 +93,7 @@ td{font-family: Arial; font-size: 10pt;}
 
 include_once 'DBConnect.php';
 
-if(!isset($_SESSION['userName']))
+if(!isset($_SESSION['user']))
 {
  header("Location: index.php");
 }
@@ -101,17 +101,16 @@ $res=mysqli_query($conn, "SELECT * FROM user WHERE userID=".$_SESSION['user']);
 $userRow=mysqli_fetch_array($res);
 ?>
 
-           <span> Welcome back, admin - <?php echo $adminRow['userName']; ?></span>
-           <span><a href="Logoutadmin.php?logout=1"><font face="verdana">Log out</a></font></span>
+         <span> Welcome back,   <?php echo $userRow['userName']; ?></span>
+          <span> <a href="Logout.php?logout=1">Log Out</a></span>
         </div>
       </div>
       <!-- end:top -->
       <header id="fh5co-header-section">
-        <div class="container">
+        <div class="container"> 	
           <div class="nav-header">
             <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-               <h1 id="fh5co-logo" ><a href="admin.php">
-			   <!--logo -->
+			 <!--logo -->
 			   <?php
 
 include_once 'DBConnect.php';
@@ -121,61 +120,65 @@ $adminRow=mysqli_fetch_array($res);
 			  echo  "<img src='logo/".$adminRow['fileName']."' alt='fsktm' style='width:90px;height:95px;'></a></h1>";
 			   ?>
 			    <!--logo -->
+           
             <!-- START #fh5co-menu-wrap -->
-<nav id="fh5co-menu-wrap" role="navigation">
+ <nav id="fh5co-menu-wrap" role="navigation">
             <ul class="sf-menu" id="fh5co-primary-menu">
-            <li><a href="admin.php">Home</a></li>
-   <li><a href="admin.php">Manage Alumni</a>
-                <ul class="fh5co-sub-menu">
-                  <li><a href="directoryAdmin.php">Directory</a></li>
-                    <li><a target="_blank">Testimonial</a>
+              <li><a href="alumni.php">Home</a></li>
+			  
+			  <li>
+                    <a href="#" class="fh5co-sub-ddown">Alumni Area</a>
                       <ul class="fh5co-sub-menu">
-                      <li><a href="testimonialListAdmin.php">Testimonial List</a></li>
-                      <li><a href="approveTestimonial.php" >Approve Testimonial</a></li>
+                      <li><a href="myAccount.php">My Account</a></li>
+					  <li><a href="myProfile.php">My Profile</a></li>
+					   <li><a href="myWall.php">My Wall</a></li>
+					   <li><a href="alumniDirectory1.php">Alumni Directory</a></li>
+                  <li><a target="_blank">Friend Network</a>
+                      <ul class="fh5co-sub-menu">
+                      <li><a href="friendList.php">Friend List</a></li>
+                      <li><a href="approveFriend.php" >Friend Request</a></li>
+					   <li><a href="cancelFriendRequest.php" >Cancel Friend Request</a></li>
                       </ul>
-                  <li><a href="researchTitleListAdmin.php">FYP Research</a></li>
-                  <li><a href="index_excel.php">Generate Account</a></li>
-				  <li><a href="approvingAlumni.php">Approve Alumni</a></li>
-                </ul>
-              </li></li>
-                 
+					  <li><a target="_blank">Testimonial</a>
+                      <ul class="fh5co-sub-menu">
+                      <li><a href="testimonialList.php">Testimonial List</a></li>
+                      <li><a href="myTestimonialList.php" >My Testimonial</a></li>
+					   <li><a href="createTestimonial1.php">Create Testimonial</a></li>
+                      </ul>
+					    <li><a href="studentViewTitle.php">Answer Survey</a></li>
+                    </ul>
+                  </li>
+
                   <li>
-                    <a href="admin.php">News & Event</a>
+                    <a href="#" class="fh5co-sub-ddown">News & Event</a>
                       <ul class="fh5co-sub-menu">
-                      <li><a target="_blank">News & Announcement</a>
-                      <ul class="fh5co-sub-menu">
-					  <li><a href="logo.php">Change Logo</a></li>
-                      <li><a href="photoadmin.php">Upload Photo</a></li>
-                      <li><a href="news.php">View News</a></li>
-
-                      </ul>
-					  
+                      <li><a href="alumniViewNew.php">News & Announcement</a>
                       </li>
-                      <li><a target="_blank">Manage Events</a>
-					    <ul class="fh5co-sub-menu">
-						 <li><a href="viewEvents.php">View Events</a></li>
-                      <li><a href="assignEM.php">Create Event Manager</a></li></li>
-
-                      </ul>
+                      <li><a href="alumniViewEvent.php" target="_blank">View Events</a></li>
                     </ul>
                   </li>
                    
-               
-             
-                <li><a href="admin.php">Report</a>
+                <li> <a href="#" class="fh5co-sub-ddown">Job Area</a>
                 <ul class="fh5co-sub-menu">
-                  <li><a href="survey.php">Manage Survey</a></li>
-                  <li><a href="report.php">Analysis Report</a></li>
-
+                  <li><a href="jobList.php">View All Jobs</a></li>
+                  <li><a href="myJobList.php">View My Job</a></li>
+                  <li><a href="createJob.php">Post Job</a></li>
                 </ul>
               </li>
-             <li><a href="admin.php">Job </a>
+              
+			  
+                <li><a target="_blank">Research Collaboration</a>
                 <ul class="fh5co-sub-menu">
-                  <li><a href="jobListAdmin.php">All Jobs</a></li>
-                  <li><a href="myJobListAdmin.php">My Jobs</a></li>
-                  <li><a href="createJobAdmin.php">Post Job</a></li>
+				   <li><a href="researchTitleList.php">Title List</a>
+				   <li><a href="researchMyTitleList.php">My Title List</a>
+				   <li><a href="researchCreate.php">Propose Title</a>
+				   
+				   </li>
+				    
+				  
                 </ul>
               </li>
+            
             </ul>
           </nav>
           </div>
@@ -183,7 +186,6 @@ $adminRow=mysqli_fetch_array($res);
       </header>
       
     </div>
-
     <div class="fh5co-hero" style="height:100%;">
       <div class="fh5co-overlay" style="height:100%;z-index:0;"></div>
       <div style="background-image: url(images/background.jpg); background-size: cover;">

@@ -167,8 +167,12 @@ $eventsRow=mysqli_fetch_array($res);
 	   <input type="text" size="70" name="end_date" value="<?php echo $eventsRow['end_date']; ?> " disabled ;/>
 	   </p> 
 	   
-	       <p>  <label><font color="purple"><b>Time: </b></font></label>
-	   <input type="text" size="70" name="time" value="<?php echo $eventsRow['time']; ?> " disabled ;/>
+	       <p>  <label><font color="purple"><b>Start Time: </b></font></label>
+	   <input type="text" size="70" name="time" value="<?php echo $eventsRow['start_time']; ?> " disabled ;/>
+	   </p> 
+	   
+	    <p>  <label><font color="purple"><b>End Time: </b></font></label>
+	   <input type="text" size="70" name="time" value="<?php echo $eventsRow['end_time']; ?> " disabled ;/>
 	   </p> 
 	   
 	       <p>  <label><font color="purple"><b>Location: </b></font></label>
@@ -271,7 +275,7 @@ $eventsRow=mysqli_fetch_array($res);
   <b>Major</b>
   </td>
       <td>
-  <b>Graduate Year</b>
+  <b>Intake Year</b>
   </td>
   </tr>
   </tr>";

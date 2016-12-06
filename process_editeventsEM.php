@@ -8,7 +8,8 @@ $getOrganizer = $_POST['organizer'];
 $getSpeaker = $_POST['speaker'];
 $getStartdate = $_POST['startdate'];
 $getEnddate = $_POST['enddate'];
-$getTime = $_POST['time'];
+$getStartTime = $_POST['start_time'];
+$getEndTime = $_POST['end_time'];
 $getLocation = $_POST['location'];
 $getInfo = $_POST['info'];
 $getName = $_POST['name'];
@@ -21,7 +22,7 @@ $getUID = $_POST['id'];
 if(empty($_FILES["file"]["name"])){
 	
 	 $sql = "UPDATE events SET title = '".$getTitle."',  organizer = '".$getOrganizer."', speaker = '".$getSpeaker."',  start_date = '".$getStartdate."'
-	 ,  end_date = '".$getEnddate."', time = '".$getTime."', location = '".$getLocation."',  further_info = '".$getInfo."'
+	 ,  end_date = '".$getEnddate."', start_time = '".$getStartTime."', end_time = '".$getEndTime."',location = '".$getLocation."',  further_info = '".$getInfo."'
 	 ,  contact_name = '".$getName."',   contact_phone = '".$getPhonenumber."', contact_email = '".$getEmail."',   contact_website = '".$getWebsite."'
 
 				
@@ -42,7 +43,7 @@ $eventFileRow=mysqli_fetch_array($res);
 		unlink( __DIR__."/events/".$oldfnm."");
 		
 	 $sql = "UPDATE events SET title = '".$getTitle."',  organizer = '".$getOrganizer."', speaker = '".$getSpeaker."',  start_date = '".$getStartdate."'
-	 ,  end_date = '".$getEnddate."', time = '".$getTime."', location = '".$getLocation."',  further_info = '".$getInfo."'
+	 ,  end_date = '".$getEnddate."', start time = '".$getStartime."', end_time = '".$getEndTime."',location = '".$getLocation."',  further_info = '".$getInfo."'
 	 ,  contact_name = '".$getName."',   contact_phone = '".$getPhonenumber."', contact_email = '".$getEmail."',   contact_website = '".$getWebsite."'
 		,   file = '".$fnm."'
 				
